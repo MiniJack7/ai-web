@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>體育館對打賽</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="baffles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="brand">
+    <h1>體育館對打賽</h1>
+    <p>桌球 11 分・羽球 21 分・單打對 CPU</p>
+  </div>
+</header>
+
+<main class="stage">
+  <div class="screen" id="screen">
+    <canvas id="game" width="1280" height="720"></canvas>
+
+    <button type="button" id="joinBtn" class="join" hidden>加入比賽</button>
+
+    <!-- 輸入名字與選難度 -->
+    <div id="setup" class="overlay" hidden>
+      <form class="panel" id="setupForm" autocomplete="off">
+        <p class="eyebrow" id="setupSport">桌球場</p>
+        <h2>加入比賽</h2>
+        <label class="field" for="nameInput">
+          <span>你的名字</span>
+          <input id="nameInput" maxlength="10" placeholder="Player">
+        </label>
+        <fieldset class="diff">
+          <legend>難度</legend>
+          <label><input type="radio" name="diff" value="easy" id="diffEasy"><span><b>簡單</b><small>球速慢，CPU 反應慢</small></span></label>
+          <label><input type="radio" name="diff" value="normal" id="diffNormal" checked><span><b>普通</b><small>中等球速與反應</small></span></label>
+          <label><input type="radio" name="diff" value="hard" id="diffHard"><span><b>困難</b><small>球速快，CPU 會殺球吊球</small></span></label>
+        </fieldset>
+        <p class="last" id="setupLast"></p>
+        <div class="actions">
+          <button type="button" class="btn ghost" id="cancelBtn">返回大廳</button>
+          <button type="submit" class="btn primary" id="startBtn">開始比賽</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- 暫停 -->
+    <div id="pause" class="overlay" hidden>
+      <div class="panel narrow">
+        <p class="eyebrow">Esc</p>
+        <h2>暫停中</h2>
+        <div class="actions">
+          <button type="button" class="btn ghost" id="quitBtn">回到大廳</button>
+          <button type="button" class="btn primary" id="resumeBtn">繼續比賽</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 結算 -->
+    <div id="result" class="overlay" hidden>
+      <div class="panel">
+        <p class="eyebrow" id="resSport">桌球・普通</p>
+        <h2 id="resTitle">比賽結束</h2>
+        <div class="score-line" id="resScore"></div>
+        <p class="meta" id="resMeta"></p>
+        <p class="last" id="resPrev"></p>
+        <div class="actions three">
+          <button type="button" class="btn ghost" id="lobbyBtn">回到大廳</button>
+          <button type="button" class="btn ghost" id="againBtn">再來一場</button>
+          <button type="button" class="btn primary" id="shotBtn">截圖存檔</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="hint" id="hint"></p>
+</main>
+
+<script src="game.js"></script>
+</body>
+</html>
